@@ -16,7 +16,7 @@ content => template('hosts_file/debhosts.erb'),
 }
 }
 class hosts_file::win_hosts {
-file {"C:\windows\System32\drivers\etc\hosts" :
+file {"C:/windows/System32/drivers/etc/hosts" :
 ensure => present,
 content => template('hosts_file/winhosts.erb'),
 }
