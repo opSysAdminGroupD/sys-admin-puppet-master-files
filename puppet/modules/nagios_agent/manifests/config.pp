@@ -1,7 +1,7 @@
 class nagios_agent::config {
 	file { "/etc/nagios/nrpe.cfg":
 	ensure => present,
-	source => "puppet:///modules/nagios_agent/nrpe.cfg",
+	source => "puppet:///modules/nagios_agent/DBnrpe.cfg",
 	mode => 0444,
 	owner => "root",
 	group => "root",

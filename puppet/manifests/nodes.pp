@@ -39,7 +39,8 @@ node 'backup.op.ac.nz','backup.sqrawler.com' inherits default
 	include ntp
 	include nagios_agent
 }
-node 'ad.sqralwer.com', 'ad.op.ac.nz' inherits default
+node 'ad.sqrawler.com', 'ad.op.ac.nz' inherits default
 {
+	include nagios_win
 }
 
