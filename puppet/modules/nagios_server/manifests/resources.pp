@@ -149,6 +149,11 @@ nagios_hostgroup{ 'remote-ssh':
 		alias => 'Remote SSH',
 		members => 'db.sqrawler.com , app.sqrawler.com , backup.sqrawler.com',
 }
+nagios_hostgroup{ 'remote-http':
+		target => '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
+		alias => 'Remote HTTP',
+		members => 'app.sqrawler.com',
+}
 
 nagios_service {'check-Disks':
 	       service_description => 'Check HDD Space',
@@ -162,7 +167,7 @@ nagios_service {'check-Disks':
 		notification_interval => 30,
 		notification_period => '24x7',
 		notification_options => 'w,u,c',
-		contact_groups => 'testing',
+		contact_groups => 'sysadmins',
   }
 nagios_service {'check-users':
 		service_description => 'Check Users',
@@ -296,6 +301,21 @@ nagios_service { 'check_ssh':
 		notification_options => 'w,u,c',
 		contact_groups => 'sysadmins',
 	}
+nagios_service { 'check_owncloud_website':
+		service_description => 'Check owncloud website',
+		hostgroup_name => 'app-servers',
+		target => '/etc/nagios3/conf.d/ppt_check_owncloud.cfg',
+		check_command => 'check_nrpe_1arg!check_http',
+		max_check_attempts => 3,
+		retry_check_interval =>1,
+		normal_check_interval =>5,
+		check_period => '24x7',
+		notification_interval =>30,
+		notification_period => '24x7',
+		notification_options =>'w,u,c',
+		contact_groups => 'testing',
+	}	
+
 nagios_hostgroup{'app-servers':
 	target => '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
 	alias => 'App Servers',
